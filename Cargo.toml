@@ -1,0 +1,24 @@
+[package]
+name = "keylogger"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = ["hook"]
+hook = []
+raw-input = ["winapi"]
+polling = []
+
+[dependencies]
+winapi = { version = "0.3", features = ["winuser", "windef", "minwindef"], optional = true }
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+debug = false
+debug-assertions = false
+overflow-checks = false
+rpath = false
